@@ -30,3 +30,33 @@ class Viaje(models.Model):
     class Meta:
         verbose_name = 'Viaje'
         verbose_name_plural = 'Viajes'
+
+class ViajesIndexPage(Page):
+    introduccion = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduccion', classname="full")
+    ]
+
+    def paginate(self, request, viajes, *args):
+        page = request.GET.get('page')
+        
+        paginator = Paginator(viajes, 10)
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+        return pages
+
+    def get_context(self, request):
+        # Update context to include only published posts, ordered by reverse-chron
+        context = super().get_context(request)
+        qs = ''
+        viajes = Viaje.objects.all().order_by('-date')
+
+        context['viajes'] = self.paginate(request, viajes)
+        context['qs'] = qs
+        
+        return context
