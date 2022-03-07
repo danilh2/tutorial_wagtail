@@ -15,6 +15,10 @@ from wagtail.search import index
 
 from pelis.models import Pelicula
 
+
+class TripPage(Page):
+    coordinates = models.CharField("Coordenadas", max_length=255, blank=True)
+
 class BlogIndexPage(Page):
     introduccion = RichTextField(blank=True)
 
