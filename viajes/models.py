@@ -12,6 +12,7 @@ class Viaje(models.Model):
     year = models.IntegerField()
     date = models.DateField('fecha')
     name = models.CharField('nombre', max_length=250)
+    slug = models.SlugField(blank=True, max_length=250)
     desc = RichTextField(blank=True)
     doc = models.URLField()
 
@@ -19,6 +20,7 @@ class Viaje(models.Model):
         FieldPanel('year'),
         FieldPanel('date'),
         FieldPanel('name'),
+        FieldPanel('slug'),
         FieldPanel('desc'),
         FieldPanel('doc')
     ]
