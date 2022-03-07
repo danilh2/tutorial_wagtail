@@ -11,9 +11,9 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel,  MultiFieldPane
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
-
-
 from wagtail.search import index
+
+from pelis.models import Pelicula
 
 class BlogIndexPage(Page):
     introduccion = RichTextField(blank=True)
