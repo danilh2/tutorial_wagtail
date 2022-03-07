@@ -7,18 +7,19 @@
 {% block content %}
 <div class="container">
     <h1>{{ page.title }}</h1>
-<hr>
-<p><a href="?decada=90">Década de los 90</a></p>
-<p><a href="?genero=drama">Drama</a></p>
-<hr>
-    <ul class="list-group">
-    {% for peli in peliculas %}
-    <li class="list-group-item">{{peli.title}}</li>
-    
-    {% empty %}
-    <p>No hay posts todavía ... </p>
-    {% endfor %}
-</ul>
+    <div class="intro">{{ page.intro|richtext }}</div>
+    <div class="list-group">
+        {% for pelicula in peliculas %}
+        <a href={{pelicula.link}} class="list-group-item list-group-item-action" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{pelicula.title}}</h5>
+            <small>{{pelicula.year}}</small>
+          </div>
+          <p class="mb-1"><img src={{pelicula.imagen}} class="img-thumbnail"></p>
+          <small>{{pelicula.rating}}</small>
+        </a>
+        {% endfor %}
+    </div>
 
 {% if peliculas.paginator.count > 1 %}
         <div class="container">
