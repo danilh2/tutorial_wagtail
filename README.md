@@ -5,9 +5,9 @@ Proyecto de evaluación final de desarrollo web en entorno servidor con el objet
 
 Esta aplicación web consta de estas tres funciones básicas:
 
-  * BLOG (Lista de blogs actualizada, creación y edición de entradas del blog)
+  * BLOGS (Lista de blogs actualizada, creación y edición de entradas del blog)
   * PELÍCULAS (Lista ordenada de películas con filtros aplicables y búsqueda alfabética)
-  * OTRA
+  * DEPORTES (Lista de información sobre los deportes actuales)
 
 Además de un formulario de contacto.
 
