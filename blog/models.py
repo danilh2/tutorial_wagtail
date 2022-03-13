@@ -7,17 +7,47 @@ from taggit.models import TaggedItemBase
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel,  MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel,  MultiFieldPanel, FieldRowPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
+
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from wagtail.search import index
 
 from pelis.models import Pelicula
 
+class FormField(AbstractFormField):
+    page = ParentalKey(
+        'ContactPage',
+        on_delete=models.CASCADE,
+        related_name='form_fields',
+    )
 
-class TripPage(Page):
-    coordinates = models.CharField("Coordenadas", max_length=255, blank=True)
+
+class ContactPage(AbstractEmailForm):
+
+    template = "contact/contact_page.html"
+    landing_page_template = "contact/contact_page_landing.html"
+
+    intro = RichTextField("Introducción", blank=True)
+    thank_you_text = RichTextField("Texto de confirmación", blank=True)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FieldPanel('intro'),
+        InlinePanel('form_fields', label='Campos'),
+        FieldPanel('thank_you_text'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel("subject"),
+        ], heading="Ajustes"),
+    ]
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
 
 class BlogIndexPage(Page):
     introduccion = RichTextField(blank=True)
@@ -33,6 +63,9 @@ class BlogIndexPage(Page):
         context['blogpages'] = blogpages
         
         return context
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['blog.BlogPage']
 
 class BlogTagIndexPage(Page):
     def get_context(self, request):
@@ -80,6 +113,9 @@ class BlogPage(Page):
         InlinePanel('gallery_images', 
             label="Galería de imágenes"),
     ]
+
+    parent_page_types = ['blog.BlogIndexPage']
+    subpage_types = []
 
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogPage, 
