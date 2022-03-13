@@ -12,11 +12,11 @@ import json
 import os
 
 
-# borrar pelis
+# borrar deportes
 for d in Deporte.objects.all():
     d.delete()
 
-#lista de películas del json
+#lista de deportes del json
 if os.path.exists("datos/datos_deportes.json"):
     deportes = json.load(open("datos/datos_deportes.json"))
 else:
