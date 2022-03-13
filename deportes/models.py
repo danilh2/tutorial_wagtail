@@ -38,7 +38,7 @@ class DeportesIndexPage(Page):
         FieldPanel('introduccion', classname="full")
     ]
 
-    def paginate(self, request, peliculas, *args):
+    def paginate(self, request, deportes, *args):
         page = request.GET.get('page')
         
         paginator = Paginator(deportes, 4)
@@ -52,7 +52,7 @@ class DeportesIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-
+        deportes = Deporte.objects.all().order_by('-name')
         context['deportes'] = self.paginate(request, deportes)
         
         return context
