@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    <div class="intro">{{ page.intro|richtext }}</div>
+    <div class="list-group">
+        {% for deporte in deportes %}
+        <a href={{deporte.link}} class="list-group-item list-group-item-action" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{deporte.name}}</h5>
+            <small>{{deporte.year}}</small>
+          </div>
+          <p class="mb-1"><img src={{deporte.imagen}} class="img-thumbnail"></p>
+        </a>
+        {% endfor %}
+    </div>
+
+{% if deportes.paginator.count > 1 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                {% include "includes/pagination.html" with subpages=deportes %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
