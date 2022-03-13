@@ -16,6 +16,7 @@ class HomePage(Page):
         'blog.BlogIndexPage', 
         'blog.ContactPage', 
         'pelis.PelisIndexPage', 
+        'deportes.DeportesIndexPage',
     ]
     parent_page_type = [
         'wagtailcore.Page'
