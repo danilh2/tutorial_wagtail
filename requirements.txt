@@ -17,7 +17,6 @@ django-taggit==2.1.0
 django-treebeard==4.5.1
 djangorestframework==3.13.1
 docker==4.2.2
-docker-compose==1.26.2
 dockerpty==0.4.1
 docopt==0.6.2
 draftjs-exporter==2.1.7
