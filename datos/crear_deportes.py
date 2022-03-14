@@ -3,7 +3,9 @@ crear deportes
 
 ejecutar:
 
-python manage.py shell < datos/crear_deportes.py
+python manage.py shell
+cd datos
+%run crear_deportes.py
 '''
 
 from deportes.models import Deporte
@@ -18,9 +20,9 @@ for d in Deporte.objects.all():
 
 #lista de deportes del json
 if os.path.exists("datos/datos_deportes.json"):
-    deportes = json.load(open("datos/datos_deportes.json"))
+    deportes = json.load(open("datos/datos_deportes.json", encoding="utf8"))
 else:
-    deportes = json.load(open("datos_deportes.json"))
+    deportes = json.load(open("datos_deportes.json", encoding="utf8"))
 
 for d1 in deportes:
     d = Deporte()

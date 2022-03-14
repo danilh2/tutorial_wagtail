@@ -3,7 +3,9 @@ crear películas
 
 ejecutar:
 
-python manage.py shell < datos/crear_peliculas.py
+python manage.py shell
+cd datos
+%run crear_peliculas.py
 '''
 
 from pelis.models import Pelicula
@@ -18,9 +20,9 @@ for p in Pelicula.objects.all():
 
 #lista de películas del json
 if os.path.exists("datos/datos_pelis2.json"):
-    pelis = json.load(open("datos/datos_pelis2.json"))
+    pelis = json.load(open("datos/datos_pelis2.json", encoding="utf8"))
 else:
-    pelis = json.load(open("datos_pelis2.json"))
+    pelis = json.load(open("datos_pelis2.json", encoding="utf8"))
 
 
 '''

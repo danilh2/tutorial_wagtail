@@ -3,7 +3,9 @@ crear generos
 
 ejecutar:
 
-python manage.py shell < datos/crear_generos.py
+python manage.py shell
+cd datos
+%run crea_generos.py
 '''
 
 from pelis.models import Pelicula, Genre
@@ -15,9 +17,9 @@ import os
 
 #lista de películas del json
 if os.path.exists("datos/datos_pelis2.json"):
-    pelis = json.load(open("datos/datos_pelis2.json"))
+    pelis = json.load(open("datos/datos_pelis2.json", encoding="utf8"))
 else:
-    pelis = json.load(open("datos_pelis2.json"))
+    pelis = json.load(open("datos_pelis2.json", encoding="utf8"))
 
 # recorre datos del json
 for p in pelis:
