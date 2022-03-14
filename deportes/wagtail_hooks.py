@@ -24,13 +24,13 @@ font-awesome icon set is available to you. Options are at http://fontawesome.io/
 class DeportesAdmin(ModelAdmin):
     model = Deporte
     search_fields = ('name', 'year')
-    menu_icon = 'site'
+    menu_icon = 'radio-empty'
     menu_order = 300
     list_display = ('name', 'year', 'image_tag')
 
 class DeportesAdminGroup(ModelAdminGroup):
     menu_label = 'Deportes'
-    menu_icon = 'site'
+    menu_icon = 'radio-empty'
     menu_order = 300
     items = (DeportesAdmin, )
 
