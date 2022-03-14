@@ -8,6 +8,10 @@ from wagtail.snippets.models import register_snippet
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.text import slugify
 
+from django.utils.html import mark_safe
+
+#busqueda por año
+
 class Deporte(models.Model):
     name = models.CharField('name', max_length=250)
     slug = models.SlugField(blank=True, max_length=250)
@@ -29,7 +33,11 @@ class Deporte(models.Model):
     class Meta:
         verbose_name = 'Deporte'
         verbose_name_plural = 'Deportes'
-        
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="150" height="150" />' % (self.imagen))
+    image_tag.short_description = 'Imagen'
+    
 
 class DeportesIndexPage(Page):
     introduccion = RichTextField(blank=True)
