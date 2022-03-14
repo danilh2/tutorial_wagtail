@@ -24,13 +24,13 @@ else:
 
 for d1 in deportes:
     d = Deporte()
-    d.title = d1["name"]
+    d.name = d1["name"]
     d.link = d1["url"]
     year = d1["year"]
     if year.isdigit():
         d.year = d1["year"]
     else:
         d.year = 0
-    d.imagen = p1["img"]
-    d.slug = slugify(f'{p.title}')
+    d.imagen = d1["img"]
+    d.slug = slugify(f'{d.name}')
     d.save()
