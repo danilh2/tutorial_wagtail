@@ -10,8 +10,6 @@ from django.utils.text import slugify
 
 from django.utils.html import mark_safe
 
-#busqueda por año
-
 class Deporte(models.Model):
     name = models.CharField('name', max_length=250)
     slug = models.SlugField(blank=True, max_length=250)
